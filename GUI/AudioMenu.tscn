@@ -1,0 +1,170 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Lobby/LobbyTheme.tres" type="Theme" id=1]
+[ext_resource path="res://GUI/BottomFrame.png" type="Texture" id=2]
+[ext_resource path="res://GUI/AudioMenu.gd" type="Script" id=3]
+[ext_resource path="res://GUI/Option_Font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://GUI/background.jpg" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Retro"
+length = 0.4
+
+[node name="AudioMenu" type="Popup"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -200.0
+margin_right = 300.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 600, 400 )
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.776471 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 74.0
+margin_top = 29.0
+margin_right = 525.0
+margin_bottom = 370.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 451.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 4 )
+text = "Audio Options"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+margin_top = 65.0
+margin_right = 451.0
+margin_bottom = 105.0
+rect_min_size = Vector2( 0, 40 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="VolumeControl" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 109.0
+margin_right = 451.0
+margin_bottom = 259.0
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer/VolumeControl"]
+margin_right = 451.0
+margin_bottom = 150.0
+custom_constants/vseparation = 30
+custom_constants/hseparation = 30
+columns = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="CenterContainer/VBoxContainer/VolumeControl/GridContainer"]
+margin_right = 141.0
+margin_bottom = 30.0
+text = "Master Volume"
+align = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/VolumeControl/GridContainer"]
+margin_left = 171.0
+margin_right = 451.0
+margin_bottom = 30.0
+
+[node name="MasterVolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VolumeControl/GridContainer/CenterContainer"]
+margin_top = 7.0
+margin_right = 280.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 280, 0 )
+min_value = -50.0
+max_value = 0.0
+value = -10.0
+
+[node name="SFXVolumeLabel" type="Label" parent="CenterContainer/VBoxContainer/VolumeControl/GridContainer"]
+margin_top = 60.0
+margin_right = 141.0
+margin_bottom = 90.0
+text = "Sfx Volume"
+align = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer/VolumeControl/GridContainer"]
+margin_left = 171.0
+margin_top = 60.0
+margin_right = 451.0
+margin_bottom = 90.0
+
+[node name="SFXVolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VolumeControl/GridContainer/CenterContainer2"]
+margin_top = 7.0
+margin_right = 280.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 280, 0 )
+min_value = -50.0
+max_value = 0.0
+value = -10.0
+
+[node name="MusicVolumeLabel" type="Label" parent="CenterContainer/VBoxContainer/VolumeControl/GridContainer"]
+margin_top = 120.0
+margin_right = 141.0
+margin_bottom = 150.0
+text = "Music Volume"
+align = 2
+
+[node name="CenterContainer3" type="CenterContainer" parent="CenterContainer/VBoxContainer/VolumeControl/GridContainer"]
+margin_left = 171.0
+margin_top = 120.0
+margin_right = 451.0
+margin_bottom = 150.0
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VolumeControl/GridContainer/CenterContainer3"]
+margin_top = 7.0
+margin_right = 280.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 280, 0 )
+min_value = -50.0
+max_value = 0.0
+value = -10.0
+
+[node name="TextureRect2" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+margin_top = 263.0
+margin_right = 451.0
+margin_bottom = 303.0
+rect_min_size = Vector2( 0, 40 )
+rect_pivot_offset = Vector2( 288, 20 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 307.0
+margin_right = 451.0
+margin_bottom = 341.0
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 200.0
+margin_right = 250.0
+margin_bottom = 34.0
+columns = 2
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_right = 50.0
+margin_bottom = 34.0
+text = "Done"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Retro = SubResource( 1 )
+
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VolumeControl/GridContainer/CenterContainer/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VolumeControl/GridContainer/CenterContainer2/SFXVolumeSlider" to="." method="_on_SFXVolumeSlider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VolumeControl/GridContainer/CenterContainer3/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/GridContainer/Button" to="." method="_on_Button_pressed"]

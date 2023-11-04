@@ -1,0 +1,182 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GUI/Option_Font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://GUI/BottomFrame.png" type="Texture" id=2]
+[ext_resource path="res://Lobby/LobbyTheme.tres" type="Theme" id=3]
+[ext_resource path="res://GUI/VideoMenu.gd" type="Script" id=4]
+
+[node name="VideoMenu" type="Popup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -250.0
+margin_right = 300.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 600, 500 )
+theme = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[node name="TextureRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 79.0
+custom_fonts/font = ExtResource( 1 )
+text = "Video Options"
+align = 1
+valign = 1
+
+[node name="Seperator" type="TextureRect" parent="VBoxContainer"]
+margin_top = 66.0
+margin_right = 600.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 0, 40 )
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 110.0
+margin_right = 600.0
+margin_bottom = 364.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/CenterContainer"]
+margin_left = 164.0
+margin_top = 11.0
+margin_right = 436.0
+margin_bottom = 243.0
+columns = 2
+
+[node name="FullScreen" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 2.0
+margin_right = 134.0
+margin_bottom = 37.0
+text = "Full Screen"
+align = 2
+
+[node name="FullScreenCheck" type="CheckBox" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 138.0
+margin_right = 278.0
+margin_bottom = 39.0
+
+[node name="Resolution" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 45.0
+margin_right = 134.0
+margin_bottom = 80.0
+text = "Resolutions"
+align = 2
+
+[node name="ResolutionSelection" type="OptionButton" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 138.0
+margin_top = 43.0
+margin_right = 278.0
+margin_bottom = 82.0
+rect_min_size = Vector2( 140, 0 )
+text = "800 x 600"
+items = [ "1920 x 1080", null, false, 0, null, "1280 x 720", null, false, 1, null, "1024 x 600", null, false, 2, null, "800 x 600", null, false, 3, null ]
+selected = 3
+
+[node name="Reflection" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 88.0
+margin_right = 134.0
+margin_bottom = 123.0
+text = "Reflection"
+align = 2
+
+[node name="ReflectionCheck" type="CheckButton" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 138.0
+margin_top = 86.0
+margin_right = 278.0
+margin_bottom = 125.0
+
+[node name="Particles" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 131.0
+margin_right = 134.0
+margin_bottom = 166.0
+text = "Particles"
+align = 2
+
+[node name="ParticlesCheck" type="CheckButton" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 138.0
+margin_top = 129.0
+margin_right = 278.0
+margin_bottom = 168.0
+
+[node name="Distance" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 174.0
+margin_right = 134.0
+margin_bottom = 209.0
+text = "High Distance"
+align = 2
+
+[node name="DistanceCheck" type="CheckButton" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 138.0
+margin_top = 172.0
+margin_right = 278.0
+margin_bottom = 211.0
+
+[node name="Shadow" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 217.0
+margin_right = 134.0
+margin_bottom = 252.0
+text = "Shadow"
+align = 2
+
+[node name="ShadowCheck" type="CheckButton" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 138.0
+margin_top = 215.0
+margin_right = 278.0
+margin_bottom = 254.0
+
+[node name="Seperator2" type="TextureRect" parent="VBoxContainer"]
+margin_top = 368.0
+margin_right = 600.0
+margin_bottom = 408.0
+rect_min_size = Vector2( 0, 40 )
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 412.0
+margin_right = 600.0
+margin_bottom = 451.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/CenterContainer2"]
+margin_left = 275.0
+margin_top = 2.0
+margin_right = 325.0
+margin_bottom = 36.0
+columns = 2
+
+[node name="DoneButton" type="Button" parent="VBoxContainer/CenterContainer2/GridContainer"]
+margin_right = 52.0
+margin_bottom = 39.0
+text = "Done"
+
+[connection signal="toggled" from="VBoxContainer/CenterContainer/GridContainer/FullScreenCheck" to="." method="_on_FullScreenCheck_toggled"]
+[connection signal="item_selected" from="VBoxContainer/CenterContainer/GridContainer/ResolutionSelection" to="." method="_on_ResolutionSelection_item_selected"]
+[connection signal="toggled" from="VBoxContainer/CenterContainer/GridContainer/ReflectionCheck" to="." method="_on_ReflectionCheck_toggled"]
+[connection signal="toggled" from="VBoxContainer/CenterContainer/GridContainer/ParticlesCheck" to="." method="_on_ParticlesCheck_toggled"]
+[connection signal="toggled" from="VBoxContainer/CenterContainer/GridContainer/DistanceCheck" to="." method="_on_DistanceCheck_toggled"]
+[connection signal="toggled" from="VBoxContainer/CenterContainer/GridContainer/ShadowCheck" to="." method="_on_ShadowCheck_toggled"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer2/GridContainer/DoneButton" to="." method="_on_DoneButton_pressed"]

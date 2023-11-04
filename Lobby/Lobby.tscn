@@ -1,0 +1,293 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Lobby/LobbyTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Lobby/WaitingRoom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Lobby/Lobby.gd" type="Script" id=3]
+[ext_resource path="res://Lobby/LobbyBackground.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GUI/criminal.svg" type="Texture" id=5]
+[ext_resource path="res://GUI/cop.svg" type="Texture" id=6]
+[ext_resource path="res://Fonts/Aloevera-OVoWO.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://GUI/InGameMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://GUI/Moon.svg" type="Texture" id=10]
+[ext_resource path="res://GUI/Sun.svg" type="Texture" id=11]
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 7 )
+
+[node name="Lobby" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="LobbyBackground" parent="." instance=ExtResource( 4 )]
+
+[node name="Viewport" parent="LobbyBackground/ViewportContainer" index="0"]
+msaa = 3
+fxaa = true
+
+[node name="SpotLight" parent="LobbyBackground/Spatial" index="0"]
+light_energy = 2.0
+light_indirect_energy = 2.0
+
+[node name="SpotLight2" parent="LobbyBackground/Spatial" index="1"]
+light_energy = 4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 16.0
+theme = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 61.0
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Lobby"
+align = 1
+
+[node name="CenterContainer3" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 65.0
+margin_right = 1024.0
+margin_bottom = 99.0
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/CenterContainer3"]
+margin_left = 455.0
+margin_right = 569.0
+margin_bottom = 34.0
+text = "Join Game"
+items = [ "Join Game", null, false, 0, null, "Host Game", null, false, 1, null ]
+selected = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 103.0
+margin_right = 1024.0
+margin_bottom = 523.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/CenterContainer"]
+margin_left = 308.0
+margin_right = 715.0
+margin_bottom = 420.0
+columns = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 2.0
+margin_right = 83.0
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+text = "Name"
+align = 2
+
+[node name="NameTextBox" type="LineEdit" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 87.0
+margin_right = 407.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 320, 0 )
+theme = ExtResource( 1 )
+text = "Player"
+align = 1
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="IPLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer" groups=["ClientOnly"]]
+margin_top = 40.0
+margin_right = 83.0
+margin_bottom = 70.0
+theme = ExtResource( 1 )
+text = "IP"
+align = 2
+
+[node name="IPTextBox" type="LineEdit" parent="VBoxContainer/CenterContainer/GridContainer" groups=["ClientOnly"]]
+margin_left = 87.0
+margin_top = 38.0
+margin_right = 407.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 320, 0 )
+theme = ExtResource( 1 )
+text = "127.0.0.1"
+align = 1
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="PortLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 78.0
+margin_right = 83.0
+margin_bottom = 108.0
+theme = ExtResource( 1 )
+text = "Port"
+align = 2
+
+[node name="PortTextBox" type="LineEdit" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 87.0
+margin_top = 76.0
+margin_right = 407.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 320, 0 )
+theme = ExtResource( 1 )
+text = "8888"
+align = 1
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="TeamLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 146.0
+margin_right = 83.0
+margin_bottom = 176.0
+text = "Team"
+align = 2
+
+[node name="TeamCheck" type="ItemList" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 87.0
+margin_top = 114.0
+margin_right = 407.0
+margin_bottom = 208.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+items = [ "Criminals", ExtResource( 5 ), false, "Cops", ExtResource( 6 ), false ]
+auto_height = true
+max_columns = 2
+same_column_width = true
+fixed_column_width = 148
+icon_mode = 0
+fixed_icon_size = Vector2( 50, 50 )
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer" groups=["HostOnly"]]
+margin_top = 244.0
+margin_right = 83.0
+margin_bottom = 274.0
+text = "Time"
+align = 2
+
+[node name="TimeCheck" type="ItemList" parent="VBoxContainer/CenterContainer/GridContainer" groups=["HostOnly"]]
+margin_left = 87.0
+margin_top = 212.0
+margin_right = 407.0
+margin_bottom = 306.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+items = [ "Night", ExtResource( 10 ), false, "Day", ExtResource( 11 ), false ]
+auto_height = true
+max_columns = 2
+same_column_width = true
+fixed_column_width = 148
+icon_mode = 0
+fixed_icon_size = Vector2( 50, 50 )
+
+[node name="ColorLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 312.0
+margin_right = 83.0
+margin_bottom = 342.0
+text = "Color"
+align = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 87.0
+margin_top = 310.0
+margin_right = 407.0
+margin_bottom = 344.0
+edit_alpha = false
+
+[node name="MoneyLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer" groups=["HostOnly"]]
+margin_top = 350.0
+margin_right = 83.0
+margin_bottom = 380.0
+text = "Goal"
+align = 2
+
+[node name="Money" type="OptionButton" parent="VBoxContainer/CenterContainer/GridContainer" groups=["HostOnly"]]
+margin_left = 87.0
+margin_top = 348.0
+margin_right = 407.0
+margin_bottom = 382.0
+text = "$5000"
+align = 1
+items = [ "$3000", null, false, 0, null, "$5000", null, false, 1, null, "$7000", null, false, 2, null ]
+selected = 1
+
+[node name="CitySizeLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer" groups=["HostOnly"]]
+margin_top = 388.0
+margin_right = 83.0
+margin_bottom = 418.0
+text = "City Size"
+align = 2
+
+[node name="CitySizePicker" type="OptionButton" parent="VBoxContainer/CenterContainer/GridContainer" groups=["HostOnly"]]
+margin_left = 87.0
+margin_top = 386.0
+margin_right = 407.0
+margin_bottom = 420.0
+text = "Medium"
+align = 1
+items = [ "Small", null, false, 0, null, "Medium", null, false, 1, null, "Large", null, false, 2, null, "Extreme", null, false, 3, null ]
+selected = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 527.0
+margin_right = 1024.0
+margin_bottom = 561.0
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/CenterContainer2"]
+margin_left = 362.0
+margin_right = 662.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 300, 0 )
+text = "Play!"
+
+[node name="WaitingRoom" parent="." groups=["WaitingRoom"] instance=ExtResource( 2 )]
+
+[node name="ItemList" parent="WaitingRoom/VBoxContainer/CenterContainer" index="0"]
+margin_top = 80.0
+margin_bottom = 80.0
+items = [ "Player 1", null, false, "Player 2", null, false, "Player 3", null, false, "Player 4", null, false ]
+
+[node name="VBoxContainer" parent="WaitingRoom/CenterContainer" index="0"]
+margin_top = 264.0
+margin_bottom = 336.0
+
+[node name="OptionsButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -180.0
+margin_top = 21.0
+margin_right = -30.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 150, 0 )
+theme = ExtResource( 1 )
+text = "Options"
+icon_align = 1
+expand_icon = true
+
+[node name="InGameMenu" parent="." instance=ExtResource( 8 )]
+
+[node name="QuitButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -177.0
+margin_top = -78.0
+margin_right = -27.0
+margin_bottom = -25.0
+theme = ExtResource( 1 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="tween_completed" from="LobbyBackground/Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="item_selected" from="VBoxContainer/CenterContainer3/OptionButton" to="." method="_on_OptionButton_item_selected"]
+[connection signal="text_changed" from="VBoxContainer/CenterContainer/GridContainer/NameTextBox" to="." method="_on_NameTextBox_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/CenterContainer/GridContainer/IPTextBox" to="." method="_on_IPTextBox_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/CenterContainer/GridContainer/PortTextBox" to="." method="_on_PortTextBox_text_changed"]
+[connection signal="item_selected" from="VBoxContainer/CenterContainer/GridContainer/TeamCheck" to="." method="_on_TeamCheck_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/CenterContainer/GridContainer/TimeCheck" to="." method="_on_TimeCheck_item_selected"]
+[connection signal="color_changed" from="VBoxContainer/CenterContainer/GridContainer/ColorPickerButton" to="." method="_on_ColorPickerButton_color_changed"]
+[connection signal="item_selected" from="VBoxContainer/CenterContainer/GridContainer/Money" to="." method="_on_Money_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/CenterContainer/GridContainer/CitySizePicker" to="." method="_on_CitySizePicker_item_selected"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer2/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="WaitingRoom/CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="WaitingRoom/CenterContainer/VBoxContainer/BackButton" to="WaitingRoom" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
+
+[editable path="LobbyBackground"]
+[editable path="WaitingRoom"]

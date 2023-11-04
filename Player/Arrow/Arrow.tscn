@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player/Arrow/Arrow.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.0313726, 1, 0, 1 )
+emission_enabled = true
+emission = Color( 0, 1, 0.00784314, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.0313726, 1, 0, 1 )
+emission_enabled = true
+emission = Color( 0, 1, 0.00784314, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="Animation" id=3]
+resource_name = "Arrow"
+length = 6.0
+step = 0.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CSGCylinder:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0672412, 5.95269 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CSGCylinder:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.448274, 0.5, 5.51345, 5.58361, 5.99539 ),
+"transitions": PoolRealArray( 2.14355, 1.68179, 1.86607, 1.6245, 1.56917, 1.6245, 2.07053 ),
+"update": 0,
+"values": [ Vector3( 0.1, 0.1, 0.1 ), Vector3( 1.1, 1.1, 1.1 ), Vector3( 0.9, 0.9, 0.9 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1.1, 1.1, 1.1 ), Vector3( 0.1, 0.1, 0.1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CSGCylinder:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 2, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CSGCylinder:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CSGCylinder:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+
+[node name="Arrow" type="Spatial" groups=["Arrow"]]
+script = ExtResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, 0 )
+visible = false
+radius = 0.25
+height = 4.0
+material = SubResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGCylinder"]
+transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -1.89578, 0.0101434 )
+radius = 0.75
+height = 2.0
+cone = true
+material = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Arrow = SubResource( 3 )
+anims/RESET = SubResource( 4 )

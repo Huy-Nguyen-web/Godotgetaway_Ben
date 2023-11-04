@@ -1,0 +1,218 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GUI/BottomFrame.png" type="Texture" id=1]
+[ext_resource path="res://GUI/Option_Font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Lobby/LobbyTheme.tres" type="Theme" id=3]
+[ext_resource path="res://GUI/InputMenu.gd" type="Script" id=4]
+
+[node name="InputMenu" type="Popup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -200.0
+margin_right = 300.0
+margin_bottom = 292.0
+rect_min_size = Vector2( 600, 400 )
+theme = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 87.0
+margin_top = 24.0
+margin_right = 512.0
+margin_bottom = 468.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 425.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 0, 90 )
+custom_fonts/font = ExtResource( 2 )
+text = "Input Options"
+align = 1
+valign = 1
+
+[node name="Seperator" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+margin_top = 94.0
+margin_right = 425.0
+margin_bottom = 134.0
+rect_min_size = Vector2( 0, 40 )
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 138.0
+margin_right = 425.0
+margin_bottom = 362.0
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer/CenterContainer"]
+margin_right = 425.0
+margin_bottom = 224.0
+custom_constants/hseparation = 150
+columns = 2
+
+[node name="DriveForward" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 2.0
+margin_right = 150.0
+margin_bottom = 32.0
+text = "Drive Forward"
+align = 2
+
+[node name="DriveForwardButton" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 300.0
+margin_right = 425.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 125, 0 )
+text = "Key W"
+
+[node name="DriveBackward" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 40.0
+margin_right = 150.0
+margin_bottom = 70.0
+text = "Drive Backward"
+align = 2
+
+[node name="DriveBackwardButton" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 300.0
+margin_top = 38.0
+margin_right = 425.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 125, 0 )
+text = "Key S"
+
+[node name="SteerRight" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 78.0
+margin_right = 150.0
+margin_bottom = 108.0
+text = "Steer Right"
+align = 2
+
+[node name="SteerRightButton" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 300.0
+margin_top = 76.0
+margin_right = 425.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 125, 0 )
+text = "Key S"
+
+[node name="SteerLeft" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 116.0
+margin_right = 150.0
+margin_bottom = 146.0
+text = "Steer Left"
+align = 2
+
+[node name="SteerLeftButton" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 300.0
+margin_top = 114.0
+margin_right = 425.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 125, 0 )
+text = "Key S"
+
+[node name="Brake" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 154.0
+margin_right = 150.0
+margin_bottom = 184.0
+text = "Brake"
+align = 2
+
+[node name="BrakeButton" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 300.0
+margin_top = 152.0
+margin_right = 425.0
+margin_bottom = 186.0
+rect_min_size = Vector2( 125, 0 )
+text = "Key S"
+
+[node name="Siren" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 192.0
+margin_right = 150.0
+margin_bottom = 222.0
+text = "Siren/Honk"
+align = 2
+
+[node name="SirenButton" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 300.0
+margin_top = 190.0
+margin_right = 425.0
+margin_bottom = 224.0
+rect_min_size = Vector2( 125, 0 )
+text = "Key S"
+
+[node name="Seperator2" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+margin_top = 366.0
+margin_right = 425.0
+margin_bottom = 406.0
+rect_min_size = Vector2( 0, 40 )
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 410.0
+margin_right = 425.0
+margin_bottom = 444.0
+
+[node name="DoneButton" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer2"]
+margin_left = 162.0
+margin_right = 262.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 100, 0 )
+text = "Done"
+
+[node name="Popup" type="Popup" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Popup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -75.0
+margin_right = 100.0
+margin_bottom = 75.0
+
+[node name="ColorRect" type="ColorRect" parent="Popup/CenterContainer"]
+margin_right = 200.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 200, 150 )
+color = Color( 0.152941, 0.152941, 0.152941, 1 )
+
+[node name="Label" type="Label" parent="Popup/CenterContainer"]
+margin_left = 25.0
+margin_top = 60.0
+margin_right = 174.0
+margin_bottom = 90.0
+text = "Press any key..."
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/GridContainer/DriveForwardButton" to="." method="_on_DriveForwardButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/GridContainer/DriveBackwardButton" to="." method="_on_DriveBackwardButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/GridContainer/SteerRightButton" to="." method="_on_SteerRightButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/GridContainer/SteerLeftButton" to="." method="_on_SteerLeftButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/GridContainer/BrakeButton" to="." method="_on_BrakeButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/GridContainer/SirenButton" to="." method="_on_SirenButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer2/DoneButton" to="." method="_on_DoneButton_pressed"]

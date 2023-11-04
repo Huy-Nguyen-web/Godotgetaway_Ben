@@ -1,0 +1,157 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Tiles/new_new_city.meshlib" type="MeshLibrary" id=1]
+[ext_resource path="res://World/World.gd" type="Script" id=2]
+[ext_resource path="res://World/GridMap.gd" type="Script" id=3]
+[ext_resource path="res://World/Border.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/ObjectSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Props/Zeppelin/Zeppelin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GUI/InGameMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Lobby/LobbyTheme.tres" type="Theme" id=8]
+[ext_resource path="res://Fonts/FashionVictim.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://GUI/loading_screen.jpg" type="Texture" id=10]
+[ext_resource path="res://World/LoadingScreen.gd" type="Script" id=11]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.854902, 0.654902, 0.235294, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 1, 0.537255, 0, 1 )
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 13
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.415686, 0.505882, 0.529412, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_color = Color( 0.239216, 0.239216, 0.239216, 1 )
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="DynamicFont" id=3]
+size = 45
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "FadeOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="World" type="Spatial" groups=["gamestate"]]
+script = ExtResource( 2 )
+
+[node name="LoadingScreen" type="TextureRect" parent="." groups=["LoadingScreen"]]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+expand = true
+script = ExtResource( 11 )
+
+[node name="CenterContainer" type="CenterContainer" parent="LoadingScreen"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -154.0
+theme = ExtResource( 8 )
+
+[node name="Loading" type="ProgressBar" parent="LoadingScreen/CenterContainer"]
+margin_left = 162.0
+margin_top = 52.0
+margin_right = 862.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 700, 50 )
+theme = ExtResource( 8 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+step = 1.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="LoadingScreen/CenterContainer"]
+margin_left = 339.0
+margin_top = 53.0
+margin_right = 685.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 3 )
+text = "Connecting to the server..."
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LoadingScreen"]
+anims/FadeOut = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="Players" type="Node" parent="."]
+__meta__ = {
+"_editor_description_": "Spawn all of the players in here"
+}
+
+[node name="NonActivePlayers" type="Node" parent="."]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource( 1 )
+cell_size = Vector3( 20, 1, 20 )
+data = {
+"cells": PoolIntArray( 0, 0, 15 )
+}
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_clip_": 0
+}
+
+[node name="Border" parent="GridMap" instance=ExtResource( 4 )]
+
+[node name="ObjectSpawner" parent="GridMap" instance=ExtResource( 5 )]
+
+[node name="Zeppelin " parent="." instance=ExtResource( 6 )]
+
+[node name="InGameMenu" parent="." instance=ExtResource( 7 )]
+
+[node name="Sun" type="DirectionalLight" parent="." groups=["ManageShadow"]]
+transform = Transform( 1, 0, 0, 0, 0.270012, 0.962857, 0, -0.962857, 0.270012, 0, 75, 200 )
+light_color = Color( 1, 0.952941, 0.686275, 1 )
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+shadow_color = Color( 0.211765, 0.192157, 0.223529, 1 )
+
+[connection signal="spawn_players" from="GridMap/ObjectSpawner" to="." method="_on_ObjectSpawner_spawn_players"]
+
+[editable path="GridMap/Border"]
